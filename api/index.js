@@ -1,4 +1,8 @@
 const router = require("express").Router();
+
+router.get("/", (req, res) => {
+  res.send(`<h1>Hello!</h1>`);
+});
 router.get("/:city", async (req, res) => {
   try {
     const fetchCity = await fetch(
