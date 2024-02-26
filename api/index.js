@@ -1,26 +1,26 @@
-const router = require("express").Router();
+import express from "express";
+const router = express.Router();
+import { cityUrlBuilder, forecastUrlBuilder } from "./api.utility.js";
 
 router.get("/", (req, res) => {
   res.send(`<h1>Hello!</h1>`);
 });
 router.get("/:city", async (req, res) => {
   try {
-    const fetchCity = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?appid=${process.env.API_KEY}&q=${req.params.city}`,
-    );
-    const formattedResponse = await fetchCity.json();
-    res.set("Access-Control-Allow-Origin", "http://localhost:4200");
-    res.send(formattedResponse);
+    const cityUrl = cityUrlBuilder(req.params.city);
+    console.log(cityUrl);
+    const fetchCity = await fetch(cityUrl);
+    const formattedCityResponse = await fetchCity.json();
+    console.log(formattedCityResponse);
 
-    // if (formattedResponse?.cod === "404") {
-    //   res.status(404).send("Unable to find city.");
-    //   console.log("Hello");
-    // }
-    //
-    // res.send(formattedResponse);
+    const forecastUrl = forecastUrlBuilder(formattedCityResponse);
+    const fetchForecast = await fetch(forecastUrl);
+    const formattedForecastResponse = await fetchForecast.json();
+    res.set("Access-Control-Allow-Origin", process.env.PROD || process.env.DEV);
+    res.send(formattedForecastResponse);
   } catch (err) {
     res.status(404).send(`The following error has occurred ${err}`);
   }
 });
 
-module.exports = router;
+export default router;
