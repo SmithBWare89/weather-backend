@@ -9,6 +9,7 @@ router.get("/:city", async (req, res) => {
       `https://api.openweathermap.org/data/2.5/weather?appid=${process.env.API_KEY}&q=${req.params.city}`,
     );
     const formattedResponse = await fetchCity.json();
+    res.set("Access-Control-Allow-Origin", "http://localhost:4200");
     res.send(formattedResponse);
 
     // if (formattedResponse?.cod === "404") {
