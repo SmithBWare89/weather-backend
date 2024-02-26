@@ -19,7 +19,7 @@ router.get("/:city", async (req, res) => {
     // res.send(formattedResponse);
   } catch (err) {
     console.log("Error!");
-    res.send("Error");
+    res.send(err);
   }
 });
 
