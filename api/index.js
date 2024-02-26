@@ -8,6 +8,7 @@ router.get("/:city", async (req, res) => {
 
     if (formattedResponse?.cod === "404") {
       res.status(404).send("Unable to find city.");
+      console.log("Hello");
     }
 
     res.send(formattedResponse);
