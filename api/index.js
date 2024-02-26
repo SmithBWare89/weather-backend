@@ -5,13 +5,11 @@ router.get("/", (req, res) => {
 });
 router.get("/:city", async (req, res) => {
   try {
-    const cityQuery = `${process.env.API_URL}${req.params.city}&appId=${process.env.API_KEY}`;
-    console.log("URL: ", cityQuery);
     const fetchCity = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?appid=${process.env.API_KEY}&q=${req.params.city}`,
     );
     const formattedResponse = await fetchCity.json();
-    res.send(formattedResponse.json());
+    res.send(formattedResponse);
 
     // if (formattedResponse?.cod === "404") {
     //   res.status(404).send("Unable to find city.");
