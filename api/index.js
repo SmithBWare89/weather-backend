@@ -7,7 +7,9 @@ router.get("/:city", async (req, res) => {
   try {
     const cityQuery = `${process.env.API_URL}${req.params.city}&appId=${process.env.API_KEY}`;
     console.log("URL: ", url);
-    const fetchCity = await fetch(cityQuery);
+    const fetchCity = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?appid=${process.env.API_KEY}&q=${req.params.city}`,
+    );
     const formattedResponse = await fetchCity.json();
     res.send(formattedResponse.json());
 
@@ -18,8 +20,7 @@ router.get("/:city", async (req, res) => {
     //
     // res.send(formattedResponse);
   } catch (err) {
-    console.log("Error!");
-    res.send(err);
+    res.status(404).send(`The following error has occurred ${err}`);
   }
 });
 

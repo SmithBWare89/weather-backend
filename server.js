@@ -9,4 +9,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(routes);
 
-app.listen(PORT, () => {});
+app.listen(PORT, () => {
+  console.log(`Now listening on PORT ${PORT}`);
+});
