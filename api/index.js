@@ -5,9 +5,6 @@ router.get("/", (req, res) => {
 });
 router.get("/:city", async (req, res) => {
   try {
-    res.send(
-      `<h1>${process.env.API_KEY} ${process.env.API_URL} ${process.env.PORT} ${process.env.CITY_URL} ${process.env.FORECAST_URL}</h1>`,
-    );
     const cityQuery = `${process.env.API_URL}${req.params.city}&appId=${process.env.API_KEY}`;
     console.log("URL: ", url);
     const fetchCity = await fetch(cityQuery);
