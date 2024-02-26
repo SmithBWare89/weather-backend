@@ -6,7 +6,7 @@ router.get("/", (req, res) => {
 router.get("/:city", async (req, res) => {
   try {
     const cityQuery = `${process.env.API_URL}${req.params.city}&appId=${process.env.API_KEY}`;
-    console.log("URL: ", url);
+    console.log("URL: ", cityQuery);
     const fetchCity = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?appid=${process.env.API_KEY}&q=${req.params.city}`,
     );
