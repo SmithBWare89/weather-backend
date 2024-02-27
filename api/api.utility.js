@@ -41,6 +41,11 @@ const formatForecast = (dailyForecast) => {
       weather: formatWeather(forecast.weather),
       windSpeed: forecast.wind_speed,
       date: forecast.dt,
+      temp: {
+        day: forecast.temp.day,
+        min: forecast.temp.min,
+        max: forecast.temp.max,
+      },
     };
   });
 };
