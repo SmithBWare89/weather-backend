@@ -3,6 +3,7 @@ const router = express.Router();
 import {
   cityUrlBuilder,
   forecastUrlBuilder,
+  setCors,
   toResponseType,
 } from "./api.utility.js";
 
@@ -12,12 +13,7 @@ router.get("/:city", async (req, res) => {
     const fetchCity = await fetch(cityUrl);
     const formattedCityResponse = await fetchCity.json();
     const origin = req.get("origin");
-    const cors =
-      origin === process.env.PROD
-        ? process.env.PROD
-        : origin === process.env.DEV
-          ? process.env.DEV
-          : undefined;
+    const cors = setCors(origin);
     if (!cors) {
       return res.status(403).send("Forbidden");
     }

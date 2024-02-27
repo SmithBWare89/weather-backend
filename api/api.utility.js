@@ -60,3 +60,11 @@ const formatWeather = (weather) => {
     };
   });
 };
+
+export const setCors = (origin) => {
+  return origin === process.env.PROD
+    ? process.env.PROD
+    : origin === process.env.DEV
+      ? process.env.DEV
+      : undefined;
+};
