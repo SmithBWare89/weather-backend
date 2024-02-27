@@ -9,14 +9,16 @@ import {
 
 router.get("/:city", async (req, res) => {
   try {
-    const cityUrl = cityUrlBuilder(req.params.city);
-    const fetchCity = await fetch(cityUrl);
-    const formattedCityResponse = await fetchCity.json();
     const origin = req.get("origin");
     const cors = setCors(origin);
     if (!cors) {
-      return res.status(403).send("Forbidden");
+      return res.status(401).send("Unauthorized");
     }
+
+    const cityUrl = cityUrlBuilder(req.params.city);
+    const fetchCity = await fetch(cityUrl);
+    const formattedCityResponse = await fetchCity.json();
+
     res.set("Access-Control-Allow-Origin", cors);
     const forecastUrl = forecastUrlBuilder(formattedCityResponse);
     const fetchForecast = await fetch(forecastUrl);
