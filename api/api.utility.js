@@ -21,6 +21,7 @@ export const toResponseType = (forecastResponse) => {
       uvi: current.uvi,
       windSpeed: current.wind_speed,
       date: current.dt,
+      humidity: current.humidity,
       weather: formatWeather(current.weather),
     },
     fiveDayForecast: formatForecast(daily),
@@ -41,6 +42,7 @@ const formatForecast = (dailyForecast) => {
       weather: formatWeather(forecast.weather),
       windSpeed: forecast.wind_speed,
       date: forecast.dt,
+      humidity: forecast.humidity,
       temp: {
         day: forecast.temp.day,
         min: forecast.temp.min,

@@ -25,7 +25,7 @@ router.get("/:city", async (req, res) => {
     const formattedForecastResponse = await fetchForecast.json();
     res.status(200).send(toResponseType(formattedForecastResponse));
   } catch (err) {
-    res.status(404).send(`The following error has occurred: ${err}`);
+    res.status(204).send(undefined);
   }
 });
 
