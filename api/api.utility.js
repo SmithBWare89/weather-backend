@@ -31,7 +31,7 @@ export const toResponseType = (forecastResponse) => {
 };
 
 const formatForecast = (dailyForecast) => {
-  return dailyForecast.map((forecast) => {
+  return dailyForecast.slice(1, 6).map((forecast) => {
     return {
       dewPoint: forecast.dew_point,
       cloudCover: forecast.clouds,
