@@ -11,6 +11,8 @@ router.get("/:city", async (req, res) => {
   try {
     const origin = req.get("origin");
     const cors = setCors(origin);
+    console.log("Origin", origin);
+    console.log("cors", cors);
     if (!cors) {
       return res.status(401).send("Unauthorized");
     }
