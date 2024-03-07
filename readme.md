@@ -9,3 +9,10 @@ PORT=3000
 API_KEY="YOUR OPEN WEATHER API KEY"
 DEV="http://localhost:<YOUR FRONT END PORT>"
 ```
+
+## How To Use
+- Clone this repository as well as the Ollie Williams front end from https://github.com/SmithBWare89/ollie-williams-weather
+- Create your .env file in this folder filling in the missing items from the example ENV
+- Install dependencies for both the front end and back end
+- Run `npm run start` to start the back end and `ng serve` to start the front end
+- Use the front end to request weather data for a city in the United States
