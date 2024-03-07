@@ -8,7 +8,7 @@ export const forecastUrlBuilder = (formattedCityResponse) => {
   return `https://api.openweathermap.org/data/2.5/onecall?lat=${cityLat}&lon=${cityLon}&exclude=hourly,minutely&units=imperial&appid=${process.env.API_KEY}&q`;
 };
 
-export const toResponseType = (forecastResponse) => {
+export const toResponseType = (forecastResponse, city) => {
   const { current, daily, lat, lon } = forecastResponse;
   return {
     currentForecast: {
@@ -23,6 +23,7 @@ export const toResponseType = (forecastResponse) => {
       date: current.dt,
       humidity: current.humidity,
       weather: formatWeather(current.weather),
+      city,
     },
     fiveDayForecast: formatForecast(daily),
     latitude: lat,

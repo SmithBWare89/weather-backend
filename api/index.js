@@ -14,8 +14,9 @@ router.get("/:city", async (req, res) => {
     if (!cors) {
       return res.status(401).send("Unauthorized");
     }
+    const searchedCity = req.params.city;
 
-    const cityUrl = cityUrlBuilder(req.params.city);
+    const cityUrl = cityUrlBuilder(searchedCity);
     const fetchCity = await fetch(cityUrl);
     const formattedCityResponse = await fetchCity.json();
 
@@ -23,7 +24,9 @@ router.get("/:city", async (req, res) => {
     const forecastUrl = forecastUrlBuilder(formattedCityResponse);
     const fetchForecast = await fetch(forecastUrl);
     const formattedForecastResponse = await fetchForecast.json();
-    res.status(200).send(toResponseType(formattedForecastResponse));
+    res
+      .status(200)
+      .send(toResponseType(formattedForecastResponse, searchedCity));
   } catch (err) {
     res.status(204).send(undefined);
   }
